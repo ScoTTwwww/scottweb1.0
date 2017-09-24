@@ -1,0 +1,30 @@
+ 
+ 
+
+<table class="table table-striped table-bordered table-rwd table-fill">
+  <thead>
+    <tr class="tr-only-hide">
+      <th>#</th>
+      <th>物品</th>
+      <th>種類</th>
+      <th class="text-right">價錢</th>
+      <th>說明</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let O of dataLists  | filterItem: filter  | paginate: config; let index = index">
+      <th data-th="#" scope="row">No.{{ (config.itemsPerPage * (config.currentPage - 1)) + index + 1 }}</th>
+      <td data-th="物品">{{ O.name }}</td>
+      <td data-th="種類">{{ O.item }}</td>
+      <td data-th="價錢" class="text-right">$ {{ O.price | number:'1.0-1'  }}</td>
+      <td data-th="說明">{{ O.text }}</td>
+      <th data-th="功能">
+
+        <a class="edit" (click)="getById.emit(O._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>編輯 </a>
+        <a class="del" (click)="delete.emit(O._id)"><i class="fa fa-trash-o" aria-hidden="true"></i>刪除</a>
+      </th>
+    </tr>
+  </tbody>
+</table>
+<app-pagination class=" pull-right" [id]="config.id" (pageChange)="config.currentPage = $event" (itemsPerPageChange)="config.itemsPerPage = $event"></app-pagination>

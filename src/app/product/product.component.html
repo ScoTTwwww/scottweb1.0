@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="tableCss" *ngIf="dataLists$ | async">
+    <!--  <input *ngIf="buttonType == 'list'" class="btn btn-primary" type="button" value="新增用品" style="margin-bottom: 5px" (click)="buttonType = 'add';">
+  <input *ngIf="buttonType != 'list'" class="btn btn-primary" type="button" value="返回清單" style="margin-bottom: 5px" (click)="buttonType = 'list'"> -->
+    <div class="buttonStyle">
+      <input *ngIf="buttonType == 'list'" type="button" value="新增用品" (click)="buttonType = 'add';">
+      <input *ngIf="buttonType != 'list'" type="button" value="返回清單" (click)="buttonType = 'list'">
+      <input  type="button" value="設定" (click)="fn()">
+      
+      <select *ngIf="buttonType == 'list'" [(ngModel)]="filter">
+            <option value=""><span class="fontCss">全部</span></option>
+            <option *ngFor="let O of data" [value]="O.item" ><span class="fontCss">{{ O.item }}</span></option>
+         </select>
+    </div>
+    <!-- Example single danger button -->
+
+    <app-product-form  *ngIf="(buttonType == 'edit' || buttonType == 'add')"
+      [dataLists]="dataLists$ | async"  
+      [dataList]="dataList$ | async"  
+      [buttonType]="buttonType"
+      (create)="create($event)"
+      (edit)="edit($event)" 
+      (cancel)="cancel($event)"
+     ></app-product-form>
+     <app-product-list-total *ngIf="buttonType == 'list' && this.config.rankType"
+      [dataLists]="dataLists$ | async" 
+      [config]="config"
+      [filter]="filter"
+     ></app-product-list-total>
+    <app-product-list *ngIf="buttonType == 'list'"
+      [dataLists]="dataLists$ | async" 
+      [config]="config"
+      [filter]="filter"
+      (getById)="getById($event)"
+      (delete)="delete($event)"
+    ></app-product-list>
+  </div>
+
+</div>
+ 
+
+
+<ng-template #templateRef let-dialogRef="dialogRef" let-ctx="dialogRef.context">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">設定</h4>
+    </div>
+    <div class="modal-body">
+      <app-product-enactment
+        [config]="config"
+        (itemsPerPage)="itemsPerPage($event)"
+         (cancel)="cancelModal($event)"
+      ></app-product-enactment>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</ng-template>
+ 

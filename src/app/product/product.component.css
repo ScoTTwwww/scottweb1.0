@@ -1,0 +1,29 @@
+ .tableCss {
+    font-family: Meiryo, "Meiryo UI", "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+ 
+}
+
+ .buttonStyle  {
+  display: inline-block;
+ 
+}
+
+ .buttonStyle input {
+    box-shadow: 0 2px 1px rgba(0,0,0,0.1), 0 0 1px rgba(0,0,0,0.1);
+    margin: 9px 1px;
+    padding: 0px 17px;
+    height: 35px;
+    border-radius: 3px;
+    
+    font-size: 15px;
+}
+ 
+.buttonStyle select {
+    box-shadow: 0 2px 1px rgba(0,0,0,0.1), 0 0 1px rgba(0,0,0,0.1);
+    margin: 9px 1px;
+    padding: 0px 17px;
+    height: 35px;
+    border-radius: 3px;
+    
+    font-size: 15px;
+}

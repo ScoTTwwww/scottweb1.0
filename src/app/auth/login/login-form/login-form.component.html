@@ -1,0 +1,13 @@
+<form class="form-signin" [formGroup]="loginForm">
+  <span class="logoStyle">Scott Web </span><span class="wtf">beta1.0</span>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" class="form-control" formControlName="userName" placeholder="帳號" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control  " formControlName="password" placeholder="密碼" required>
+  <div class="checkbox" *ngIf="error">
+    <span style="color: red"> 帳號密碼錯誤，請重新輸入 </span>
+  </div>
+ 
+ 
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login.emit(loginForm.value)">Sign in</button>
+</form>
